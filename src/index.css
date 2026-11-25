@@ -1,0 +1,62 @@
+@import '@fontsource/baloo-2/500.css';
+@import '@fontsource/baloo-2/700.css';
+@import '@fontsource/baloo-2/800.css';
+@import '@fontsource/nunito/400.css';
+@import '@fontsource/nunito/600.css';
+@import '@fontsource/nunito/800.css';
+@import 'tailwindcss';
+
+@theme {
+  --color-sun: #ffe99a;
+  --color-sky: #a9ddf5;
+  --color-lav: #d8c7ff;
+  --color-pink: #ffb8c8;
+  --color-cream: #fff9ed;
+  --color-ink: #333333;
+
+  --font-display: 'Baloo 2', 'Nunito', ui-rounded, system-ui, sans-serif;
+  --font-body: 'Nunito', ui-rounded, system-ui, sans-serif;
+
+  --shadow-card: 0 10px 30px -8px rgb(51 51 51 / 0.14), 0 2px 6px rgb(51 51 51 / 0.06);
+  --shadow-pop: 0 6px 0 0 rgb(51 51 51 / 0.9);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Nền chấm bi nhẹ nhàng */
+.bg-dots {
+  background-image: radial-gradient(rgb(51 51 51 / 0.07) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+}
+
+/* Nút "sticker" có viền đậm và bóng đổ cứng, nhấn xuống khi click */
+.btn-pop {
+  border: 3px solid var(--color-ink);
+  box-shadow: 0 5px 0 0 var(--color-ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+.btn-pop:hover { transform: translateY(-2px) rotate(-1deg); box-shadow: 0 7px 0 0 var(--color-ink); }
+.btn-pop:active { transform: translateY(4px); box-shadow: 0 1px 0 0 var(--color-ink); }
+.btn-pop:focus-visible { outline: 3px dashed var(--color-ink); outline-offset: 4px; }
+
+.hand { font-family: var(--font-display); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
