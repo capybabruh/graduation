@@ -3,8 +3,10 @@ import { useParams } from 'react-router-dom'
 import Confetti from '../components/Confetti'
 import Countdown from '../components/Countdown'
 import EventDetails from '../components/EventDetails'
+import FloatingHearts from '../components/FloatingHearts'
 import Footer from '../components/Footer'
 import Hero from '../components/Hero'
+import LoveLetter from '../components/LoveLetter'
 import NavPills from '../components/NavPills'
 import RSVP from '../components/RSVP'
 import { event } from '../data/event'
@@ -33,11 +35,13 @@ export default function InvitationPage() {
       <NavPills />
       {/* key theo guest.id để đổi link /invite/x → /invite/y sẽ reset animation và RSVP */}
       <Hero key={guest.id} guest={guest} />
-      <EventDetails event={event} />
-      <Countdown event={event} />
+      <LoveLetter guest={guest} />
+      <EventDetails event={event} guest={guest} />
+      <Countdown event={event} guest={guest} />
       <RSVP key={`rsvp-${guest.id}`} guest={guest} />
       <Footer guest={guest} />
-      <Confetti key={`confetti-${guest.id}`} />
+      <Confetti key={`confetti-${guest.id}`} love={guest.style === 'love'} />
+      {guest.style === 'love' && <FloatingHearts />}
     </main>
   )
 }

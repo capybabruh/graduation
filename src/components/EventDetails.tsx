@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion'
 import { CalendarDays, CalendarPlus, Clock, GraduationCap, MapPin, School } from 'lucide-react'
 import type { ReactNode } from 'react'
-import type { EventInfo } from '../data/types'
+import type { EventInfo, Guest } from '../data/types'
+import { getCopy } from '../lib/copy'
 import { formatDate, formatTime, googleCalendarUrl, mapUrl } from '../lib/utils'
 import SectionTitle from './SectionTitle'
 
@@ -22,12 +23,13 @@ function Row({ icon, label, value, bg, i }: { icon: ReactNode; label: string; va
   )
 }
 
-export default function EventDetails({ event }: { event: EventInfo }) {
+export default function EventDetails({ event, guest }: { event: EventInfo; guest: Guest }) {
+  const copy = getCopy(guest)
   const location = `${event.locationName} – ${event.locationAddress}`
   return (
     <section id="event" className="relative px-4 py-20">
       <div className="mx-auto max-w-3xl">
-        <SectionTitle emoji="📍" title="Thông tin buổi lễ" subtitle="Ghi lại ngay kẻo quên nha!" />
+        <SectionTitle emoji="📍" title="Thông tin buổi lễ" subtitle={copy.eventSubtitle} />
 
         <ul className="grid gap-4 sm:grid-cols-2">
           <Row i={0} bg="bg-pink" icon={<GraduationCap size={26} />} label="Event" value={event.title} />

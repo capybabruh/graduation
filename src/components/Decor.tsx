@@ -14,6 +14,45 @@ export function Star({ size = 40, fill = 'var(--color-sun)' }: { size?: number; 
   )
 }
 
+export function Heart({ size = 40, fill = 'var(--color-pink)' }: { size?: number; fill?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 48 48" aria-hidden>
+      <path d="M24 42C9 31 4 22 4 15.5A10.5 10.5 0 0124 10a10.5 10.5 0 0120 5.5C44 22 39 31 24 42z"
+        fill={fill} stroke={stroke} strokeWidth="2.5" strokeLinejoin="round" />
+      <path d="M13 16c0-3 2.4-5 5-5" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" opacity=".8" />
+    </svg>
+  )
+}
+
+/** Hoa hồng: nụ xoáy + cuống + lá. */
+export function Rose({ size = 56, fill = '#FF5C8A' }: { size?: number; fill?: string }) {
+  return (
+    <svg width={size} height={size * 1.5} viewBox="0 0 48 72" aria-hidden>
+      <path d="M24 38c0 14-2 22 0 32" fill="none" stroke={stroke} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M24 56c-9-1-13-7-13-12 9 0 13 5 13 12z" fill="#8FD6A8" stroke={stroke} strokeWidth="2.5" strokeLinejoin="round" />
+      <path d="M24 50c8-1 12-6 12-11-8 0-12 4-12 11z" fill="#8FD6A8" stroke={stroke} strokeWidth="2.5" strokeLinejoin="round" />
+      <path d="M24 4C11 4 4 14 6 24c2 10 12 15 18 15s16-5 18-15C44 14 37 4 24 4z" fill={fill} stroke={stroke} strokeWidth="2.5" strokeLinejoin="round" />
+      <path d="M24 13c-8 0-10 9-3 12 7 3 12-4 8-9-2-3-7-3-8 0-1 2 1 4 3 4" fill="none" stroke={stroke} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M11 17c1-3 3-5 6-6" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" opacity=".7" />
+    </svg>
+  )
+}
+
+/** Hoa tulip: ba cánh + cuống + lá. */
+export function Tulip({ size = 56, fill = '#FF9EC0' }: { size?: number; fill?: string }) {
+  return (
+    <svg width={size} height={size * 1.5} viewBox="0 0 48 72" aria-hidden>
+      <path d="M24 36c0 14 0 24 0 34" fill="none" stroke={stroke} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M24 66C10 62 8 50 10 42c10 4 14 12 14 24z" fill="#8FD6A8" stroke={stroke} strokeWidth="2.5" strokeLinejoin="round" />
+      <path d="M24 62c12-3 15-12 14-19-10 3-14 10-14 19z" fill="#8FD6A8" stroke={stroke} strokeWidth="2.5" strokeLinejoin="round" />
+      <path d="M8 8c-2 16 3 27 16 30C20 28 18 16 8 8z" fill={fill} stroke={stroke} strokeWidth="2.5" strokeLinejoin="round" />
+      <path d="M40 8c2 16-3 27-16 30 4-10 6-22 16-30z" fill={fill} stroke={stroke} strokeWidth="2.5" strokeLinejoin="round" />
+      <path d="M24 4C15 13 13 26 24 38 35 26 33 13 24 4z" fill={fill} stroke={stroke} strokeWidth="2.5" strokeLinejoin="round" />
+      <path d="M20 14c-1 4-1 8 1 12" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" opacity=".7" />
+    </svg>
+  )
+}
+
 export function Sparkle({ size = 28, fill = 'var(--color-sky)' }: { size?: number; fill?: string }) {
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" aria-hidden>

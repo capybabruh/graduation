@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import type { Guest } from '../data/types'
-import { Balloon, Cloud, Floaty, GradCap, Sparkle, Squiggle, Star } from './Decor'
+import { getCopy } from '../lib/copy'
+import { Balloon, Cloud, Floaty, GradCap, Heart, Rose, Sparkle, Squiggle, Star, Tulip } from './Decor'
 import InvitationCard from './InvitationCard'
 
 const container = { hidden: {}, show: { transition: { staggerChildren: 0.12 } } }
@@ -11,11 +12,23 @@ const item = {
 }
 
 export default function Hero({ guest }: { guest: Guest }) {
+  const copy = getCopy(guest)
+  const love = guest.style === 'love'
   return (
     <section id="top" className="relative overflow-hidden bg-gradient-to-b from-sky/60 via-lav/40 to-cream px-4 pb-24 pt-20 sm:pt-24">
       <div className="bg-dots absolute inset-0" aria-hidden />
 
       {/* sticker trang trí */}
+      {love && (
+        <>
+          <Floaty className="left-[2%] top-28" delay={0.3} rotate={5}><Rose size={44} /></Floaty>
+          <Floaty className="right-[2%] top-32" delay={0.9} rotate={5}><Tulip size={44} /></Floaty>
+          <Floaty className="left-[4%] top-[38%] hidden sm:block" delay={0.6}><Tulip size={52} fill="#FFC2D6" /></Floaty>
+          <Floaty className="right-[4%] top-[44%] hidden sm:block" delay={1.2}><Rose size={52} fill="#FF7FA3" /></Floaty>
+          <Floaty className="left-[10%] top-[24%] hidden md:block" delay={0.4}><Heart size={34} /></Floaty>
+          <Floaty className="right-[10%] top-[30%] hidden md:block" delay={1}><Heart size={30} fill="#FF4F87" /></Floaty>
+        </>
+      )}
       <Floaty className="left-[4%] top-24 hidden sm:block"><Balloon fill="var(--color-pink)" /></Floaty>
       <Floaty className="right-[5%] top-40 hidden sm:block" delay={1}><Balloon fill="var(--color-sun)" size={64} /></Floaty>
       <Floaty className="left-[8%] top-[52%]" delay={0.5}><Star size={36} /></Floaty>
@@ -31,16 +44,20 @@ export default function Hero({ guest }: { guest: Guest }) {
         </motion.p>
 
         <motion.h1 variants={item} className="hand mt-6 text-5xl font-extrabold leading-[1.05] sm:text-7xl">
-          HEY,{' '}
+          {copy.hello}{' '}
           <span className="inline-block -rotate-2 rounded-2xl bg-pink px-3 text-ink shadow-[0_5px_0_0_#333] [text-wrap:balance]">
             {guest.name.toUpperCase()}!
           </span>{' '}
-          <motion.span className="inline-block origin-[70%_70%]" animate={{ rotate: [0, 20, -8, 20, 0] }}
-            transition={{ duration: 1.6, repeat: Infinity, repeatDelay: 1.5 }}>👋</motion.span>
+          {love ? (
+            <span className="heartbeat" aria-hidden>{copy.helloEmoji}</span>
+          ) : (
+            <motion.span className="inline-block origin-[70%_70%]" animate={{ rotate: [0, 20, -8, 20, 0] }}
+              transition={{ duration: 1.6, repeat: Infinity, repeatDelay: 1.5 }}>{copy.helloEmoji}</motion.span>
+          )}
         </motion.h1>
 
         <motion.h2 variants={item} className="hand mt-4 text-2xl font-bold uppercase tracking-wide text-ink/80 sm:text-4xl">
-          You're invited to my graduation!
+          {copy.invited}
         </motion.h2>
 
         <motion.div variants={item} className="mt-3 flex justify-center"><Squiggle /></motion.div>

@@ -9,6 +9,8 @@ export interface Guest {
   rsvp_status: RsvpStatus
   /** 'love' = giao diện tông hồng + xưng hô anh/em (dành cho người thương). Để trống = giao diện mặc định. */
   style?: 'love'
+  /** Thư riêng (mỗi phần tử là một đoạn). Chỉ hiển thị khi có – dùng cho thiệp style 'love'. */
+  love_letter?: string[]
 }
 
 export interface GalleryPhoto {

@@ -2,10 +2,11 @@ import { motion } from 'framer-motion'
 import type { Guest } from '../data/types'
 import { getCopy } from '../lib/copy'
 import Avatar from './Avatar'
-import { GradCap, Sparkle, Star } from './Decor'
+import { GradCap, Heart, Rose, Sparkle, Star, Tulip } from './Decor'
 
 export default function InvitationCard({ guest }: { guest: Guest }) {
   const copy = getCopy(guest)
+  const love = guest.style === 'love'
   return (
     // Lớp ngoài: animation xuất hiện; lớp trong: floating liên tục (tách riêng để không xung đột transform)
     <motion.div
@@ -44,13 +45,14 @@ export default function InvitationCard({ guest }: { guest: Guest }) {
             >
               <GradCap size={62} />
             </motion.div>
-            <div className="absolute -bottom-1 -left-4"><Star size={34} fill="var(--color-pink)" /></div>
+            <div className="absolute -bottom-1 -left-4">{love ? <Heart size={40} fill="#FF4F87" /> : <Star size={34} fill="var(--color-pink)" />}</div>
+            {love && <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 text-3xl heartbeat" aria-hidden>💗</div>}
             <div className="absolute -right-6 bottom-6"><Sparkle size={26} /></div>
           </div>
         </motion.div>
 
         <p className="hand text-2xl font-bold text-ink/80 sm:text-3xl">
-          Dear <span className="rounded-xl bg-sun px-2 py-0.5 text-ink">{guest.name}</span>,
+          {copy.dear} <span className="rounded-xl bg-sun px-2 py-0.5 text-ink">{guest.name}</span>{love ? ' 💖' : ','}
         </p>
 
         <h2 className="hand mt-4 text-3xl font-extrabold leading-tight sm:text-4xl">
@@ -58,11 +60,11 @@ export default function InvitationCard({ guest }: { guest: Guest }) {
         </h2>
 
         <p className="mx-auto mt-4 max-w-md text-base font-semibold leading-relaxed text-ink/75 sm:text-lg">
-          After years of studying, assignments, deadlines and countless cups of coffee, I'm finally graduating!
+          {copy.intro}
         </p>
 
         <p className="hand mt-4 text-xl font-bold sm:text-2xl">
-          And I really want <span className="text-[var(--color-accent,#e8678a)]">YOU</span> to be there!
+          {love ? copy.want : <>And I really want <span className="text-[var(--color-accent,#e8678a)]">YOU</span> to be there!</>}
         </p>
 
         {/* Lời nhắn cá nhân hoá */}
@@ -72,6 +74,14 @@ export default function InvitationCard({ guest }: { guest: Guest }) {
           </span>
           <p className="text-base font-bold leading-relaxed sm:text-lg">“{guest.invitation_message}”</p>
         </div>
+        {love && (
+          <>
+            <div className="pointer-events-none absolute -bottom-9 -left-4 -rotate-12 sm:-left-8"><Rose size={54} /></div>
+            <div className="pointer-events-none absolute -bottom-9 -right-4 rotate-12 sm:-right-8"><Tulip size={54} /></div>
+            <div className="pointer-events-none absolute -bottom-7 left-[22%] hidden rotate-6 sm:block"><Tulip size={38} fill="#FFC2D6" /></div>
+            <div className="pointer-events-none absolute -bottom-7 right-[22%] hidden -rotate-6 sm:block"><Rose size={38} fill="#FF7FA3" /></div>
+          </>
+        )}
       </motion.article>
     </motion.div>
   )

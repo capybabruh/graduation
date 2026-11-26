@@ -16,6 +16,12 @@ export const guests: Guest[] = [
     invitation_message: 'Anh rất mong em sẽ đến chung vui cùng anh nhé! 💕',
     rsvp_status: 'pending',
     style: 'love',
+    love_letter: [
+      'Gửi em, người anh thương nhất,',
+      'Những năm đại học có áp lực, có mệt mỏi, có những lúc anh tưởng mình không đi nổi tới cuối. Nhưng có em ở bên, mọi thứ đều nhẹ đi rất nhiều.',
+      'Ngày anh mặc áo cử nhân, người anh muốn đứng cạnh anh nhất chính là em. Cảm ơn em đã luôn tin anh, chờ anh và thương anh.',
+      'Đến với anh nhé, để khoảnh khắc này trọn vẹn nhất. 💕',
+    ],
   },
   {
     id: 'thai-duong-xgbq3',

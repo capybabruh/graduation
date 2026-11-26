@@ -1,8 +1,9 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useMemo, useState } from 'react'
 import { getStart, timeLeft } from '../lib/utils'
-import type { EventInfo } from '../data/types'
-import { Floaty, Star } from './Decor'
+import type { EventInfo, Guest } from '../data/types'
+import { getCopy } from '../lib/copy'
+import { Floaty, Heart, Star } from './Decor'
 import SectionTitle from './SectionTitle'
 
 function useCountdown(target: Date) {
@@ -41,19 +42,21 @@ function Tile({ value, label, bg, tilt }: { value: number; label: string; bg: st
   )
 }
 
-export default function Countdown({ event }: { event: EventInfo }) {
+export default function Countdown({ event, guest }: { event: EventInfo; guest: Guest }) {
+  const copy = getCopy(guest)
+  const love = guest.style === 'love'
   const target = useMemo(() => getStart(event), [event])
   const left = useCountdown(target)
 
   return (
     <section id="countdown" className="relative overflow-hidden bg-lav/40 px-4 py-20">
       <div className="bg-dots absolute inset-0" aria-hidden />
-      <Floaty className="left-[6%] top-10"><Star size={34} fill="var(--color-sun)" /></Floaty>
-      <Floaty className="right-[7%] bottom-10" delay={1}><Star size={28} fill="var(--color-pink)" /></Floaty>
+      <Floaty className="left-[6%] top-10">{love ? <Heart size={36} /> : <Star size={34} fill="var(--color-sun)" />}</Floaty>
+      <Floaty className="right-[7%] bottom-10" delay={1}>{love ? <Heart size={30} fill="#FF4F87" /> : <Star size={28} fill="var(--color-pink)" />}</Floaty>
 
       <div className="relative mx-auto max-w-3xl">
-        <SectionTitle emoji="⏳" title={left.done ? "It's party time!" : 'Đếm ngược đến ngày tốt nghiệp'}
-          subtitle={left.done ? 'Ngày trọng đại đã đến rồi 🎉' : 'Chỉ còn một chút xíu nữa thôi…'} />
+        <SectionTitle emoji="⏳" title={left.done ? copy.countdownDone : copy.countdownTitle}
+          subtitle={left.done ? 'Ngày trọng đại đã đến rồi 🎉' : copy.countdownSubtitle} />
         <div role="timer" aria-live="off" className="grid grid-cols-4 gap-2 sm:gap-5">
           <Tile value={left.days} label="Days" bg="bg-sun" tilt={-2} />
           <Tile value={left.hours} label="Hours" bg="bg-sky" tilt={2} />
