@@ -6,10 +6,8 @@ import EventDetails from '../components/EventDetails'
 import Footer from '../components/Footer'
 import Hero from '../components/Hero'
 import NavPills from '../components/NavPills'
-import PhotoGallery from '../components/PhotoGallery'
 import RSVP from '../components/RSVP'
 import { event } from '../data/event'
-import { gallery } from '../data/gallery'
 import { getGuestById } from '../data/guests'
 import NotFound from './NotFound'
 
@@ -36,7 +34,6 @@ export default function InvitationPage() {
       <Hero key={guest.id} guest={guest} />
       <EventDetails event={event} />
       <Countdown event={event} />
-      <PhotoGallery photos={gallery} />
       <RSVP key={`rsvp-${guest.id}`} guest={guest} />
       <Footer />
       <Confetti key={`confetti-${guest.id}`} />

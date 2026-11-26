@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 const links = [
   { href: '#event', label: '📍 Sự kiện' },
   { href: '#countdown', label: '⏳ Đếm ngược' },
-  { href: '#memories', label: '📸 Kỷ niệm' },
   { href: '#rsvp', label: '💌 RSVP' },
 ]
 
