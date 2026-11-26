@@ -16,13 +16,13 @@ export default function Hero({ guest }: { guest: Guest }) {
       <div className="bg-dots absolute inset-0" aria-hidden />
 
       {/* sticker trang trí */}
-      <Floaty className="left-[4%] top-24 hidden sm:block"><Balloon fill="#FFB8C8" /></Floaty>
-      <Floaty className="right-[5%] top-40 hidden sm:block" delay={1}><Balloon fill="#FFE99A" size={64} /></Floaty>
+      <Floaty className="left-[4%] top-24 hidden sm:block"><Balloon fill="var(--color-pink)" /></Floaty>
+      <Floaty className="right-[5%] top-40 hidden sm:block" delay={1}><Balloon fill="var(--color-sun)" size={64} /></Floaty>
       <Floaty className="left-[8%] top-[52%]" delay={0.5}><Star size={36} /></Floaty>
-      <Floaty className="right-[9%] top-[60%]" delay={1.4}><Sparkle size={32} fill="#FFB8C8" /></Floaty>
+      <Floaty className="right-[9%] top-[60%]" delay={1.4}><Sparkle size={32} fill="var(--color-pink)" /></Floaty>
       <Floaty className="left-[3%] bottom-24 hidden md:block" delay={0.8} rotate={3}><Cloud /></Floaty>
       <Floaty className="right-[3%] top-10 hidden md:block" delay={0.2} rotate={3}><Cloud width={90} /></Floaty>
-      <Floaty className="right-[14%] bottom-28 hidden md:block" delay={1.1}><GradCap size={56} fill="#FFE99A" /></Floaty>
+      <Floaty className="right-[14%] bottom-28 hidden md:block" delay={1.1}><GradCap size={56} fill="var(--color-sun)" /></Floaty>
 
       <motion.div variants={container} initial="hidden" animate="show" className="relative mx-auto max-w-3xl text-center">
         <motion.p variants={item}

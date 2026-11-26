@@ -7,6 +7,8 @@ export interface Guest {
   avatar: string
   invitation_message: string
   rsvp_status: RsvpStatus
+  /** 'love' = giao diện tông hồng + xưng hô anh/em (dành cho người thương). Để trống = giao diện mặc định. */
+  style?: 'love'
 }
 
 export interface GalleryPhoto {

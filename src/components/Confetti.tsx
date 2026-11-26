@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import confetti from 'canvas-confetti'
 
-const COLORS = ['#FFE99A', '#A9DDF5', '#D8C7FF', '#FFB8C8', '#ffffff']
+const COLORS = ['var(--color-sun)', 'var(--color-sky)', 'var(--color-lav)', 'var(--color-pink)', '#ffffff']
 
 const base = { colors: COLORS, disableForReducedMotion: true, zIndex: 100 } as const
 

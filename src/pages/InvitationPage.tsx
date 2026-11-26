@@ -9,6 +9,7 @@ import NavPills from '../components/NavPills'
 import RSVP from '../components/RSVP'
 import { event } from '../data/event'
 import { getGuestById } from '../data/guests'
+import { getCopy } from '../lib/copy'
 import NotFound from './NotFound'
 
 export default function InvitationPage() {
@@ -16,14 +17,14 @@ export default function InvitationPage() {
   const guest = getGuestById(id)
 
   useEffect(() => {
-    document.title = guest ? `${guest.name}, bạn được mời dự Tùng's Graduation Party 🎓` : `Không tìm thấy thiệp 🥲`
+    document.title = guest ? getCopy(guest).pageTitle : `Không tìm thấy thiệp 🥲`
     window.scrollTo(0, 0)
   }, [guest])
 
   if (!guest) return <NotFound />
 
   return (
-    <main>
+    <main className={guest.style === 'love' ? 'theme-love' : undefined}>
       {import.meta.env.DEV && event.isPlaceholder && (
         <div className="relative z-50 bg-ink px-4 py-2 text-center text-xs font-bold text-sun">
           ⚠️ DEV: hội trường trong src/data/event.ts vẫn là giá trị tạm. Hãy cập nhật rồi đặt isPlaceholder = false.
@@ -35,7 +36,7 @@ export default function InvitationPage() {
       <EventDetails event={event} />
       <Countdown event={event} />
       <RSVP key={`rsvp-${guest.id}`} guest={guest} />
-      <Footer />
+      <Footer guest={guest} />
       <Confetti key={`confetti-${guest.id}`} />
     </main>
   )

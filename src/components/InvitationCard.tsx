@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion'
 import type { Guest } from '../data/types'
+import { getCopy } from '../lib/copy'
 import Avatar from './Avatar'
 import { GradCap, Sparkle, Star } from './Decor'
 
 export default function InvitationCard({ guest }: { guest: Guest }) {
+  const copy = getCopy(guest)
   return (
     // Lớp ngoài: animation xuất hiện; lớp trong: floating liên tục (tách riêng để không xung đột transform)
     <motion.div
@@ -42,7 +44,7 @@ export default function InvitationCard({ guest }: { guest: Guest }) {
             >
               <GradCap size={62} />
             </motion.div>
-            <div className="absolute -bottom-1 -left-4"><Star size={34} fill="#FFB8C8" /></div>
+            <div className="absolute -bottom-1 -left-4"><Star size={34} fill="var(--color-pink)" /></div>
             <div className="absolute -right-6 bottom-6"><Sparkle size={26} /></div>
           </div>
         </motion.div>
@@ -60,13 +62,13 @@ export default function InvitationCard({ guest }: { guest: Guest }) {
         </p>
 
         <p className="hand mt-4 text-xl font-bold sm:text-2xl">
-          And I really want <span className="text-[#e8678a]">YOU</span> to be there!
+          And I really want <span className="text-[var(--color-accent,#e8678a)]">YOU</span> to be there!
         </p>
 
         {/* Lời nhắn cá nhân hoá */}
         <div className="relative mx-auto mt-7 max-w-md rounded-3xl border-[3px] border-dashed border-ink/60 bg-lav/50 px-5 py-4">
           <span className="absolute -top-4 left-5 rounded-full border-2 border-ink bg-pink px-3 py-0.5 text-xs font-extrabold uppercase tracking-wide">
-            Lời nhắn riêng cho bạn 💌
+            {copy.messageLabel}
           </span>
           <p className="text-base font-bold leading-relaxed sm:text-lg">“{guest.invitation_message}”</p>
         </div>

@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useRef, useState } from 'react'
 import type { Guest, RsvpStatus } from '../data/types'
+import { getCopy } from '../lib/copy'
 import { loadRsvp, saveRsvp } from '../lib/rsvp'
 import { fireCelebrationConfetti } from './Confetti'
 import { Balloon, Floaty, Sparkle, Star } from './Decor'
@@ -8,6 +9,7 @@ import { Balloon, Floaty, Sparkle, Star } from './Decor'
 export default function RSVP({ guest }: { guest: Guest }) {
   const [status, setStatus] = useState<RsvpStatus>(() => loadRsvp(guest))
   const yesRef = useRef<HTMLButtonElement>(null)
+  const copy = getCopy(guest)
 
   const choose = (next: RsvpStatus, e?: React.MouseEvent) => {
     setStatus(next)
@@ -20,10 +22,10 @@ export default function RSVP({ guest }: { guest: Guest }) {
 
   return (
     <section id="rsvp" className="relative overflow-hidden bg-gradient-to-b from-cream via-pink/30 to-sun/40 px-4 py-24">
-      <Floaty className="left-[5%] top-12 hidden sm:block"><Balloon fill="#A9DDF5" /></Floaty>
-      <Floaty className="right-[6%] top-20 hidden sm:block" delay={1}><Balloon fill="#D8C7FF" size={50} /></Floaty>
+      <Floaty className="left-[5%] top-12 hidden sm:block"><Balloon fill="var(--color-sky)" /></Floaty>
+      <Floaty className="right-[6%] top-20 hidden sm:block" delay={1}><Balloon fill="var(--color-lav)" size={50} /></Floaty>
       <Floaty className="left-[12%] bottom-16" delay={0.6}><Star size={32} /></Floaty>
-      <Floaty className="right-[12%] bottom-20" delay={1.2}><Sparkle size={30} fill="#FFE99A" /></Floaty>
+      <Floaty className="right-[12%] bottom-20" delay={1.2}><Sparkle size={30} fill="var(--color-sun)" /></Floaty>
 
       <div className="relative mx-auto max-w-2xl text-center">
         <AnimatePresence mode="wait">
@@ -33,7 +35,7 @@ export default function RSVP({ guest }: { guest: Guest }) {
               <h2 className="hand mt-2 text-3xl font-extrabold leading-tight sm:text-5xl">
                 Will you celebrate this special day with me?
               </h2>
-              <p className="mt-3 text-base font-semibold text-ink/70">Mình cần biết để chuẩn bị chỗ cho bạn, {guest.name.split(' ').slice(-1)[0]} ơi!</p>
+              <p className="mt-3 text-base font-semibold text-ink/70">{copy.rsvpHint}</p>
               <div className="mt-8 flex flex-col items-stretch justify-center gap-4 sm:flex-row">
                 <button ref={yesRef} type="button" onClick={(e) => choose('yes', e)}
                   className="btn-pop rounded-full bg-sun px-7 py-4 text-lg sm:text-xl">YES! I'LL BE THERE! 🎉</button>
@@ -57,16 +59,16 @@ export default function RSVP({ guest }: { guest: Guest }) {
               </motion.div>
               {status === 'yes' ? (
                 <>
-                  <h2 className="hand mt-4 text-3xl font-extrabold sm:text-4xl">Yay! Cảm ơn bạn nhiều lắm!</h2>
+                  <h2 className="hand mt-4 text-3xl font-extrabold sm:text-4xl">{copy.yesTitle}</h2>
                   <p className="mt-3 text-lg font-semibold text-ink/75">
-                    Mình rất mong được gặp <b>{guest.name}</b> ở buổi lễ. Nhớ mặc thật xinh/đẹp để chụp ảnh nhé! 📸
+                    {copy.yesText}
                   </p>
                 </>
               ) : (
                 <>
-                  <h2 className="hand mt-4 text-3xl font-extrabold sm:text-4xl">Không sao đâu, mình hiểu mà!</h2>
+                  <h2 className="hand mt-4 text-3xl font-extrabold sm:text-4xl">{copy.noTitle}</h2>
                   <p className="mt-3 text-lg font-semibold text-ink/75">
-                    Cảm ơn <b>{guest.name}</b> đã dành thời gian đọc thiệp. Mình vẫn sẽ gửi ảnh cho bạn và hẹn bạn một buổi cà phê khác nhé! ☕💛
+                    {copy.noText}
                   </p>
                 </>
               )}

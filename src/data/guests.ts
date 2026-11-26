@@ -13,8 +13,9 @@ export const guests: Guest[] = [
     id: 'tuyet-trinh-g9far',
     name: 'Tuyết Trinh',
     avatar: '/images/friends/friend-001.jpg',
-    invitation_message: 'Hy vọng bạn sẽ đến chung vui cùng mình!',
+    invitation_message: 'Anh rất mong em sẽ đến chung vui cùng anh nhé! 💕',
     rsvp_status: 'pending',
+    style: 'love',
   },
   {
     id: 'thai-duong-xgbq3',

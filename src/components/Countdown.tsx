@@ -48,8 +48,8 @@ export default function Countdown({ event }: { event: EventInfo }) {
   return (
     <section id="countdown" className="relative overflow-hidden bg-lav/40 px-4 py-20">
       <div className="bg-dots absolute inset-0" aria-hidden />
-      <Floaty className="left-[6%] top-10"><Star size={34} fill="#FFE99A" /></Floaty>
-      <Floaty className="right-[7%] bottom-10" delay={1}><Star size={28} fill="#FFB8C8" /></Floaty>
+      <Floaty className="left-[6%] top-10"><Star size={34} fill="var(--color-sun)" /></Floaty>
+      <Floaty className="right-[7%] bottom-10" delay={1}><Star size={28} fill="var(--color-pink)" /></Floaty>
 
       <div className="relative mx-auto max-w-3xl">
         <SectionTitle emoji="⏳" title={left.done ? "It's party time!" : 'Đếm ngược đến ngày tốt nghiệp'}
